@@ -2,8 +2,10 @@
 
 class TaskService
 {
-    public static function addComment(User $user, Task $task, string $text):object
+    public static function addComment(User $user, Task $task, string $text):void
     {
-       return $comment = new Comment($user, $task, $text);
+       $comment = new Comment($user, $task, $text);
+
+        $task->setComments($comment);
     }
 }
