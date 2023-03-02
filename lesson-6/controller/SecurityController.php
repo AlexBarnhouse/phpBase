@@ -1,5 +1,6 @@
 <?php
 require_once 'model/UserProvider.php';
+$pdo = require 'db.php';
 
 $error = null;
 if (isset($_GET['action'])) {
@@ -14,7 +15,9 @@ if (isset($_GET['action'])) {
 
             ['username' => $username, 'password' => $password] = $_POST;
 
-            $user = (new UserProvider)->getByUsernameAndPassword($username, $password);
+            $userProvider = new UserProvider($pdo);
+
+            $user =$userProvider->getByUsernameAndPassword($username, $password);
 
             if (is_null($user)) {
                 $error = 'User is not found';

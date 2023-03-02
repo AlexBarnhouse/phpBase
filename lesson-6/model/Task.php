@@ -17,7 +17,10 @@ class Task
 
     public function isDone(): bool
     {
-        return $this->isDone;
+        if ($this->isDone === true) {
+            return 1;
+        }
+        return 0;
     }
 
     public function setIsDone(bool $isDone): void
